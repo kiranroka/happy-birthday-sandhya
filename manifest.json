@@ -1,0 +1,16 @@
+{
+  "name": "Sandhya Birthday",
+  "short_name": "Sandhya",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#1F1629",
+  "theme_color": "#1F1629",
+  "description": "A beautiful birthday surprise website for Sandhya",
+  "icons": [
+    {
+      "src": "data:image/png;base64,",
+      "sizes": "any",
+      "type": "image/png"
+    }
+  ]
+}

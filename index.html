@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1F1629">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="manifest" href="manifest.json">
+    <meta name="description" content="A premium birthday surprise website for Sandhya — filled with love, memories, and heartfelt wishes.">
+    <title>Happy Birthday, Sandhya • With All Our Love ❤️</title>
+    
+    <!-- Premium Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;family=Allura&amp;family=Dancing+Script:wght@400;700&amp;family=Poppins:wght@300;400;500;600&amp;family=Inter:wght@300;400;500&amp;display=swap">
+    
+    <style>
+        /* =============================================
+           PREMIUM BIRTHDAY WEBSITE FOR SANDHYA
+           Luxury • Elegant • Emotional • Cinematic
+           Combined Single File Version
+           ============================================= */
+
+        :root {
+            --pink: #FFB6C1;
+            --lavender: #C8A2FF;
+            --sky: #A7D8FF;
+            --gold: #FFD700;
+            --white: #FFFFFF;
+            --deep-plum: #1F1629;
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --glass-strong: rgba(31, 22, 41, 0.75);
+            --font-script: 'Dancing Script', 'Great Vibes', cursive;
+            --font-elegant: 'Allura', cursive;
+            --font-body: 'Poppins', 'Inter', system-ui, sans-serif;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.25);
+            --transition-smooth: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--deep-plum);
+            color: var(--white);
+            overflow-x: hidden;
+            line-height: 1.7;
+            min-height: 100vh;
+            min-height: 100svh;
+            padding-bottom: env(safe-area-inset-bottom);
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            overscroll-behavior-y: none;
+        }
+
+        button, a, video, [role="button"] {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ========== LOADER ========== */
+        .loader {
+            position: fixed;
+            inset: 0;
+            background: var(--deep-plum);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-content { text-align: center; }
+        .loader-heart { font-size: 4rem; animation: heartbeat 1.5s infinite ease-in-out; }
+        .loader-text { margin-top: 1.5rem; font-size: 1.1rem; color: var(--pink); letter-spacing: 1px; }
+        .loader-bar { width: 220px; height: 3px; background: rgba(255,255,255,0.1); margin: 2rem auto 0; border-radius: 999px; overflow: hidden; }
+        .loader-progress { width: 0; height: 100%; background: linear-gradient(to right, var(--pink), var(--gold)); animation: loadProgress 2.2s ease forwards; }
+
+        @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
+        @keyframes loadProgress { to { width: 100%; } }
+
+        /* ========== HERO SECTION ========== */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            min-height: 100dvh;
+            padding: 2.5rem 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
+        .hero-overlay { position: absolute; inset: 0; background: rgba(31,22,41,0.55); z-index: 2; }
+        .hero-gradient { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(31,22,41,0.3) 0%, rgba(31,22,41,0.85) 100%); z-index: 3; }
+
+        .hero-content { position: relative; z-index: 10; text-align: center; padding: 0 24px 4rem; max-width: 920px; display: flex; flex-direction: column; align-items: center; }
+        .hero-title { font-family: var(--font-script); font-size: clamp(3.6rem, 8.5vw, 7.5rem); font-weight: 700; line-height: 1.05; margin-bottom: 2rem; }
+        .gradient-text { 
+            background: linear-gradient(135deg, #FFD700, #FFB6C1, #C8A2FF); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            background-size: 200% 200%; 
+            animation: gradientShift 6s ease infinite; 
+        }
+        @keyframes gradientShift { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+
+        .hero-message.glass {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(24px);
+            padding: 2.5rem 2.8rem;
+            border-radius: 28px;
+            max-width: 780px;
+            margin: 0 auto 1.25rem;
+            box-shadow: var(--shadow-soft);
+            font-size: clamp(1.15rem, 2.6vw, 1.5rem);
+            line-height: 1.85;
+        }
+        .hero-message p { margin-bottom: 0.9rem; }
+
+        .mama-letter {
+            position: relative; z-index: 20; max-width: 780px; margin: 0 auto 1.35rem;
+            padding: 1.3rem 1.45rem; border-radius: 24px; background: linear-gradient(135deg, rgba(255,182,193,0.22), rgba(255,215,0,0.16));
+            border: 2px solid rgba(255,255,255,0.32); backdrop-filter: blur(14px);
+            box-shadow: var(--shadow-soft); text-align: left;
+            font-size: 1.05rem;
+        }
+        .letter-label {
+            font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold);
+            margin-bottom: 0.55rem; font-weight: 700;
+        }
+        .mama-letter p { margin-bottom: 0.7rem; line-height: 1.8; }
+        .mama-letter .letter-sign {
+            margin-top: 0.8rem; font-weight: 700; color: #fff4c2;
+        }
+
+        .scroll-indicator { 
+            position: relative; bottom: auto; left: auto; transform: none;
+            z-index: 20; display: flex; flex-direction: column; align-items: center; 
+            gap: 8px; cursor: pointer; opacity: 0.9; margin-top: 0.25rem; padding-bottom: 0.5rem;
+        }
+        .scroll-text { font-size: 0.95rem; letter-spacing: 3px; text-transform: uppercase; }
+        .scroll-arrow { font-size: 2rem; animation: gentleBounce 2s infinite ease-in-out; }
+        @keyframes gentleBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(14px)} }
+
+        #hero-balloons, #hero-sparkles { position: absolute; inset: 0; z-index: 5; pointer-events: none; overflow: hidden; }
+
+        /* ========== MEMORIES SECTION ========== */
+        .memories { position: relative; min-height: 100vh; padding: 100px 18px 140px; overflow: hidden; background: #130d1f; }
+        .memories-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; filter: brightness(0.7) saturate(1.1); }
+        .memories-overlay { position: absolute; inset: 0; z-index: 2; background: linear-gradient(135deg, rgba(19,13,31,0.72), rgba(31,22,41,0.78)); }
+        .memories-content { position: relative; z-index: 10; max-width: 1320px; margin: 0 auto; }
+        .memories-content::before {
+            content: '';
+            position: absolute;
+            inset: -24px;
+            border-radius: 36px;
+            background: radial-gradient(circle at top, rgba(255,182,193,0.16), transparent 62%);
+            pointer-events: none;
+            z-index: -1;
+            animation: softenGlow 6s ease-in-out infinite alternate;
+        }
+        @keyframes softenGlow { from { opacity: 0.4; transform: scale(0.98); } to { opacity: 0.8; transform: scale(1.02); } }
+
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-title { font-family: var(--font-elegant); font-size: clamp(3rem, 6vw, 4.8rem); color: var(--gold); margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.25rem; max-width: 620px; margin: 0 auto; opacity: 0.9; }
+
+        .memory-quote {
+            max-width: 760px;
+            margin: 0 auto 2.2rem;
+            padding: 1.25rem 1.6rem;
+            border-radius: 24px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.22);
+            backdrop-filter: blur(16px);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            font-size: clamp(1.05rem, 2vw, 1.3rem);
+            line-height: 1.8;
+            color: #fff8dc;
+            font-style: italic;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Tabs */
+        .tabs { display: flex; justify-content: center; gap: 16px; margin-bottom: 3.5rem; flex-wrap: wrap; }
+        .tab-btn { 
+            display: flex; align-items: center; gap: 12px; padding: 16px 42px; 
+            background: var(--glass-bg); border: 1px solid var(--glass-border); 
+            border-radius: 9999px; color: var(--white); font-size: 1.15rem; 
+            cursor: pointer; transition: var(--transition-smooth); backdrop-filter: blur(16px); 
+            touch-action: manipulation; min-height: 48px; 
+        }
+        .tab-btn.active { 
+            background: linear-gradient(135deg, var(--pink), var(--gold)); 
+            color: var(--deep-plum); border-color: transparent; 
+        }
+        .tab-btn:hover { background: rgba(255,255,255,0.15); transform: translateY(-3px); }
+
+        /* Gallery */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 28px; }
+        .video-section, .photo-section {
+            margin: 2.2rem 0 0;
+            padding: 1.2rem;
+            border-radius: 28px;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(14px);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 3;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+        .video-section-title, .photo-section-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-align: center;
+        }
+        .video-section video {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+            object-fit: cover;
+            max-height: 420px;
+        }
+        .memory-card { 
+            background: rgba(255,255,255,0.12); border: 3px solid rgba(255,255,255,0.34); 
+            border-radius: 28px; overflow: hidden; transition: var(--transition-smooth); 
+            box-shadow: var(--shadow-soft); cursor: pointer; touch-action: manipulation; 
+            backdrop-filter: blur(12px);
+            padding: 12px;
+        }
+        .memory-card:hover { transform: translateY(-12px) scale(1.02); border-color: var(--pink); }
+        .memory-card img, .memory-card video { width: 100%; height: 340px; object-fit: cover; transition: transform 0.7s ease; border-radius: 20px; }
+        .memory-card:hover img, .memory-card:hover video { transform: scale(1.1); }
+        .card-body { padding: 1.2rem 1.3rem 1.4rem; font-size: 1rem; color: rgba(255,255,255,0.9); }
+        .card-body strong {
+            display: block; margin-bottom: 0.35rem; color: var(--gold); font-size: 1.02rem;
+        }
+
+        .video-card::after { 
+            content: '▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+            width: 72px; height: 72px; background: rgba(255,255,255,0.95); color: var(--deep-plum); 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8rem; 
+        }
+
+        /* Music Button */
+        .music-btn { 
+            position: fixed; bottom: calc(24px + env(safe-area-inset-bottom)); right: 20px; width: 62px; height: 62px; 
+            border-radius: 50%; background: linear-gradient(135deg, var(--pink), var(--gold)); 
+            border: none; font-size: 1.8rem; box-shadow: 0 15px 45px rgba(255,182,193,0.5); 
+            z-index: 100; cursor: pointer; transition: transform 0.3s ease; 
+            display: flex; align-items: center; justify-content: center; touch-action: manipulation;
+        }
+        .music-btn:hover { transform: scale(1.12); }
+        .music-btn.playing { animation: pulse 2s infinite ease-in-out; }
+        @keyframes pulse { 0%,100%{box-shadow:0 15px 45px rgba(255,182,193,0.5)} 50%{box-shadow:0 15px 45px rgba(255,182,193,0.8)} }
+
+        /* Lightbox & Video Modal */
+        .lightbox, .video-modal { 
+            display: none; position: fixed; inset: 0; background: rgba(10,5,25,0.96); 
+            z-index: 9999; align-items: center; justify-content: center; padding: 40px 20px; 
+        }
+        .lightbox.active, .video-modal.active { display: flex; }
+        .lightbox-close, .video-modal-close { 
+            position: absolute; top: -20px; right: -20px; width: 56px; height: 56px; 
+            background: var(--white); color: var(--deep-plum); border: none; border-radius: 50%; 
+            font-size: 2.2rem; cursor: pointer; 
+        }
+
+        /* ========== 3D ROTATING PHOTO CUBE ========== */
+        .cube-section { margin: 3rem 0 5rem; text-align: center; }
+        .cube-title { font-family: var(--font-elegant); font-size: 2.2rem; color: var(--gold); margin-bottom: 2rem; }
+
+        .cube-wrapper { 
+            perspective: 1400px; width: 320px; height: 320px; 
+            margin: 0 auto 2.5rem; display: flex; align-items: center; justify-content: center; 
+        }
+        .cube { 
+            width: 260px; height: 260px; position: relative; transform-style: preserve-3d; 
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+            cursor: grab; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); 
+            touch-action: none;
+        }
+        .cube:active { cursor: grabbing; }
+
+        .cube-face { 
+            position: absolute; width: 260px; height: 260px; 
+            background-size: cover; background-position: center; 
+            border: 6px solid rgba(255, 255, 255, 0.95); 
+            border-radius: 16px; box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.4); 
+            backface-visibility: hidden; 
+        }
+        .cube-face.front  { transform: rotateY(0deg) translateZ(130px); }
+        .cube-face.back   { transform: rotateY(180deg) translateZ(130px); }
+        .cube-face.right  { transform: rotateY(90deg) translateZ(130px); }
+        .cube-face.left   { transform: rotateY(-90deg) translateZ(130px); }
+        .cube-face.top    { transform: rotateX(90deg) translateZ(130px); }
+        .cube-face.bottom { transform: rotateX(-90deg) translateZ(130px); }
+
+        .cube-controls { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 1rem; max-width: 100%; }
+        .cube-btn { 
+            padding: 14px 24px; background: var(--glass-bg); border: 1px solid var(--glass-border); 
+            color: var(--white); font-size: 1rem; border-radius: 9999px; cursor: pointer; 
+            transition: var(--transition-smooth); min-width: 150px; touch-action: manipulation; min-height: 48px; 
+        }
+        .cube-btn:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
+        .cube-hint { font-size: 0.95rem; opacity: 0.7; font-style: italic; }
+
+        @media (max-width: 480px) {
+            .cube-wrapper { width: 260px; height: 260px; }
+            .cube, .cube-face { width: 220px; height: 220px; }
+            .cube-face.front  { transform: rotateY(0deg) translateZ(110px); }
+            .cube-face.back   { transform: rotateY(180deg) translateZ(110px); }
+            .cube-face.right  { transform: rotateY(90deg) translateZ(110px); }
+            .cube-face.left   { transform: rotateY(-90deg) translateZ(110px); }
+            .cube-face.top    { transform: rotateX(90deg) translateZ(110px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(110px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { padding: 1.4rem 0 2.4rem; }
+            .hero-title { font-size: 2.7rem; line-height: 1.08; margin-bottom: 1.2rem; }
+            .hero-content { padding: 0 14px 2rem; }
+            .hero-message.glass { padding: 1.3rem 1rem; font-size: 0.98rem; margin-bottom: 1rem; }
+            .mama-letter { padding: 1.1rem 1rem; font-size: 0.97rem; margin-bottom: 1rem; }
+            .scroll-indicator { gap: 6px; margin-top: 0.1rem; }
+            .scroll-text { font-size: 0.78rem; letter-spacing: 1.2px; }
+            .cube-controls { flex-direction: column; align-items: center; gap: 10px; }
+            .cube-btn { width: min(220px, 100%); min-width: 0; min-height: 52px; padding: 14px 18px; }
+            .music-btn { width: 56px; height: 56px; bottom: calc(14px + env(safe-area-inset-bottom)); right: 14px; font-size: 1.6rem; }
+            .memories { padding: 70px 12px 130px; }
+            .section-title { font-size: 2.6rem; }
+            .section-subtitle { font-size: 1rem; }
+            .memory-quote { padding: 1rem 1.05rem; font-size: 1rem; }
+            .tabs { gap: 12px; }
+            .tab-btn { padding: 13px 22px; font-size: 0.96rem; min-height: 50px; }
+            .gallery { grid-template-columns: 1fr; gap: 18px; }
+            .video-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .video-section video { max-height: 260px; }
+            .memory-card img, .memory-card video { height: 270px; }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title { font-size: 2.25rem; }
+            .hero-message.glass { padding: 1.1rem 0.9rem; font-size: 0.93rem; }
+            .mama-letter { padding: 1rem 0.9rem; font-size: 0.93rem; }
+            .cube-wrapper { width: 220px; height: 220px; }
+            .cube, .cube-face { width: 180px; height: 180px; }
+            .cube-face.front  { transform: rotateY(0deg) translateZ(90px); }
+            .cube-face.back   { transform: rotateY(180deg) translateZ(90px); }
+            .cube-face.right  { transform: rotateY(90deg) translateZ(90px); }
+            .cube-face.left   { transform: rotateY(-90deg) translateZ(90px); }
+            .cube-face.top    { transform: rotateX(90deg) translateZ(90px); }
+            .cube-face.bottom { transform: rotateX(-90deg) translateZ(90px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOADER -->
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <div class="loader-heart">❤️</div>
+            <div class="loader-text">Preparing something beautiful for Sandhya...</div>
+            <div class="loader-bar"><div class="loader-progress"></div></div>
+        </div>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+            <source src="https://assets.mixkit.co/videos/preview/754/754-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-gradient"></div>
+        <div id="hero-sparkles"></div>
+        <div id="hero-balloons"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">🎉 Happy Birthday, Sandhya! 🎂</span>
+            </h1>
+            <div class="hero-message glass">
+                <p>प्रिय सन्ध्या,</p>
+                <p>जन्मदिनको धेरै धेरै शुभकामना।</p>
+                <p>तिम्रो जीवन सधैं खुशी, सफलता, राम्रो स्वास्थ्य र मुस्कानले भरियोस्।</p>
+                <p>तिम्रा सबै सपना पूरा हुन्।</p>
+                <p>हामी सबै तिमीलाई धेरै माया गर्छौं। ❤️</p>
+            </div>
+            <div class="mama-letter">
+                <div class="letter-label">From Mama 💖</div>
+                <p>**मेरी प्यारी भान्जी सन्ध्या,** ❤️
+
+जन्मदिनको धेरै धेरै शुभकामना! 🎉🎂
+
+आजको यो विशेष दिनमा तिमीलाई मनदेखि धेरै माया र शुभकामना व्यक्त गर्न चाहन्छु। तिमी हाम्रो परिवारको उज्यालो हौ। तिम्रो मुस्कानले सबैको मन जित्छ, तिम्रो सरलता र मायालु स्वभावले हामी सबैलाई सधैं खुसी बनाउँछ।
+
+भगवानसँग मेरो यही प्रार्थना छ कि तिम्रो जीवन सधैं सुख, शान्ति, सफलता, राम्रो स्वास्थ्य र अपार खुसीले भरिपूर्ण रहोस्। तिमीले देखेका हरेक सपना पूरा होऊन्, तिम्रो प्रत्येक पाइला सफलताको बाटोतर्फ अघि बढोस्, र तिम्रो अनुहारमा सधैं यस्तै मिठो मुस्कान रहिरहोस्।
+
+जीवनमा जस्तोसुकै परिस्थिति आए पनि आत्मविश्वास कहिल्यै नहार्नु। आफ्ना सपना पूरा गर्न निरन्तर मेहनत गरिरहनु, किनकि तिमीले चाहेको हरेक लक्ष्य हासिल गर्ने क्षमता तिमीभित्र छ। हामी सबै सधैं तिम्रो साथमा छौं र तिमीप्रति गर्व गर्छौं।
+
+तिमी हाम्रो परिवारको अमूल्य उपहार हौ। तिम्रो माया, हाँसो र खुसीले हाम्रो जीवन अझ सुन्दर बनेको छ। भगवानले तिमीलाई सधैं सुरक्षित राखून्, दीर्घायु प्रदान गरून् र तिम्रो जीवनमा कहिल्यै दुःखको छायाँ पनि नपरोस्।
+
+यो जन्मदिन तिम्रो जीवनको सबैभन्दा सुन्दर, रमाइलो र अविस्मरणीय बनोस्। केकको मिठासभन्दा पनि तिम्रो जीवन अझ मिठो बनोस्, र प्रत्येक नयाँ वर्षले नयाँ अवसर, नयाँ सफलता र नयाँ खुसी लिएर आओस्।
+
+**जन्मदिनको अनन्त शुभकामना, मेरी प्यारी सन्ध्या!** 🎂🎈
+
+**सधैं धेरै माया र आशीर्वादसहित,**\
+
+
+**तिम्रो मामा** ❤️
+</p>
+                <div class="letter-sign">Love, Mama ❤️</div>
+            </div>
+            <div class="scroll-indicator" onclick="document.getElementById('memories').scrollIntoView({ behavior: 'smooth' })">
+                <span class="scroll-text">Scroll to explore memories</span>
+                <span class="scroll-arrow">↓</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEMORIES -->
+    <section class="memories" id="memories">
+        <video id="memories-bg-video" class="memories-video" autoplay muted loop playsinline webkit-playsinline preload="auto">
+            <source src="videos/backgroundvideo.mp4" type="video/mp4">
+        </video>
+        <div class="memories-overlay glass-strong"></div>
+
+        <div class="memories-content">
+            <div class="section-header">
+                <h2 class="section-title">Memories ❤️</h2>
+                <p class="section-subtitle">यी पलहरू हाम्रो मनमा सधैं उज्यालो भएर रहन्छन्।</p>
+            </div>
+
+            <div class="memory-quote">
+                “संसारमा सबैभन्दा सुन्दर चीजहरू हुन् — तिम्रा हँसिलाहरू, तिम्रा सम्झनाहरू, र तिम्रो साथमा बिताएका प्यारो पलहरू।”
+            </div>
+
+            <!-- 3D ROTATING PHOTO CUBE -->
+            <div class="cube-section">
+                <h3 class="cube-title">Explore Our Memories in 3D</h3>
+                <div class="cube-wrapper">
+                    <div class="cube" id="memory-cube">
+                        <div class="cube-face front"></div>
+                        <div class="cube-face back"></div>
+                        <div class="cube-face right"></div>
+                        <div class="cube-face left"></div>
+                        <div class="cube-face top"></div>
+                        <div class="cube-face bottom"></div>
+                    </div>
+                </div>
+                <div class="cube-controls">
+                    <button class="cube-btn" onclick="rotateCube(-90)">⟵ Rotate Left</button>
+                    <button class="cube-btn" onclick="toggleAutoRotate()">⏯ Auto Rotate</button>
+                    <button class="cube-btn" onclick="rotateCube(90)">Rotate Right ⟶</button>
+                </div>
+                <p class="cube-hint">Drag the cube or use the buttons • Touch supported</p>
+            </div>
+
+            <div class="video-section">
+                <div class="video-grid">
+                    <div>
+                        <h3 class="video-section-title">🎬 Birthday Video 1</h3>
+                        <video controls autoplay muted loop playsinline preload="auto">
+                            <source src="videos/backgroundvideo1.mp4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div>
+                        <h3 class="video-section-title">🎬 Birthday Video 2</h3>
+                        <video controls autoplay muted loop playsinline preload="auto">
+                            <source src="videos/backgroundvideo2.mp4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+
+            <div class="photo-section">
+                <h3 class="photo-section-title">📸 Sweet Memories</h3>
+                <div id="photo-gallery" class="gallery"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music Button -->
+    <button id="music-btn" class="music-btn" onclick="toggleMusic()" aria-label="Toggle music">🎵</button>
+    <audio id="bg-music" loop>
+        <source src="music/birthday-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="if (event.target.id === 'lightbox') closeLightbox()">
+        <div class="lightbox-content">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-image" alt="Memory of Sandhya">
+            <div class="lightbox-controls">
+                <button class="lightbox-btn" onclick="navigateLightbox(-1)">←</button>
+                <button class="lightbox-btn" onclick="navigateLightbox(1)">→</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="video-modal" class="video-modal" onclick="if (event.target.id === 'video-modal') closeVideoModal()">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <video id="modal-video" controls autoplay muted playsinline preload="auto"></video>
+            <div class="video-caption" id="video-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== GLOBAL VARIABLES ==========
+        let currentRotationY = 0;
+        let currentRotationX = 15;
+        let isAutoRotating = true;
+        let autoRotateInterval = null;
+        let currentLightboxIndex = 0;
+        let currentLightboxPhotos = [];
+
+        // ========== LOADER ==========
+        function initLoader() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                setTimeout(launchConfetti, 600);
+            }, 2200);
+        }
+
+        // ========== FLOATING ELEMENTS ==========
+        function initFloatingElements() {
+            const balloonContainer = document.getElementById('hero-balloons');
+            const sparkleContainer = document.getElementById('hero-sparkles');
+
+            for (let i = 0; i < 11; i++) {
+                setTimeout(() => createBalloon(balloonContainer), i * 280);
+            }
+
+            setInterval(() => {
+                if (document.visibilityState === 'visible') createBalloon(balloonContainer);
+            }, 4800);
+
+            setInterval(() => {
+                if (Math.random() > 0.6) createFloatingHeart(balloonContainer);
+            }, 6500);
+
+            let lastSparkle = 0;
+            document.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastSparkle > 120 && Math.random() > 0.75) {
+                    lastSparkle = now;
+                    createSparkle(sparkleContainer, e.clientX, e.clientY);
+                }
+            });
+        }
+
+        function createBalloon(container) {
+            const balloon = document.createElement('div');
+            balloon.style.cssText = `position:absolute;left:${Math.random()*95}vw;bottom:-100px;font-size:${2.4+Math.random()*1.4}rem;opacity:${0.6+Math.random()*0.35};z-index:6;pointer-events:none;animation:floatBalloon ${14+Math.random()*10}s linear forwards;`;
+            const emojis = ['🎈','🦋','🌸','✨','❤️','🎀'];
+            balloon.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+            container.appendChild(balloon);
+            setTimeout(() => balloon.remove(), 26000);
+        }
+
+        function createFloatingHeart(container) {
+            const heart = document.createElement('div');
+            heart.style.cssText = `position:absolute;left:${Math.random()*90}vw;bottom:-60px;font-size:${1.8+Math.random()*1.2}rem;opacity:0.7;z-index:7;pointer-events:none;animation:floatHeart ${18+Math.random()*8}s linear forwards;`;
+            heart.textContent = '❤️';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 28000);
+        }
+
+        function createSparkle(container, x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.cssText = `position:fixed;left:${x}px;top:${y}px;width:7px;height:7px;background:#FFD700;border-radius:50%;pointer-events:none;z-index:999;box-shadow:0 0 14px #FFD700;animation:sparklePop 900ms forwards;`;
+            container.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 1000);
+        }
+
+        // Add animations
+        const animStyle = document.createElement('style');
+        animStyle.textContent = `
+            @keyframes floatBalloon { to { transform: translateY(-130vh) rotate(22deg); } }
+            @keyframes floatHeart { to { transform: translateY(-140vh) rotate(15deg); } }
+            @keyframes sparklePop { 0%{transform:scale(0.4);opacity:0} 30%{opacity:1} 100%{transform:scale(1.8);opacity:0} }
+        `;
+        document.head.appendChild(animStyle);
+
+        // ========== CONFETTI ==========
+        function launchConfetti() {
+            const colors = ['#FFB6C1','#FFD700','#C8A2FF','#A7D8FF','#FFFFFF'];
+            for (let i = 0; i < 220; i++) {
+                setTimeout(() => {
+                    const c = document.createElement('div');
+                    c.style.cssText = `position:fixed;left:${Math.random()*window.innerWidth}px;top:-20px;width:${6+Math.random()*9}px;height:${6+Math.random()*9}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:${Math.random()>0.6?'50%':'2px'};z-index:9998;pointer-events:none;`;
+                    document.body.appendChild(c);
+                    c.animate([{transform:'translateY(0)',opacity:0.9},{transform:`translateY(${window.innerHeight+120}px) rotate(${Math.random()*70-35}deg)`,opacity:0}], 
+                    {duration:4200+Math.random()*3800, easing:'cubic-bezier(0.25,0.1,0.25,1)'}).onfinish = () => c.remove();
+                }, i * 1.8);
+            }
+        }
+
+        // ========== TABS ==========
+        function switchTab(tab) {
+            const photoG = document.getElementById('photo-gallery');
+            const videoG = document.getElementById('video-gallery');
+            const tabs = document.querySelectorAll('.tab-btn');
+
+            tabs.forEach((t, i) => t.classList.toggle('active', i === tab));
+
+            if (tab === 0) {
+                photoG.style.display = 'grid';
+                videoG.style.display = 'none';
+            } else {
+                photoG.style.display = 'none';
+                videoG.style.display = 'grid';
+            }
+        }
+
+        // ========== GALLERIES ==========
+        function populateGalleries() {
+            const photoContainer = document.getElementById('photo-gallery');
+            const photos = [
+                {src: 'photos/photosandhya1.jpeg', caption: 'तिम्रो सुन्दर मुस्कानले सम्पूर्ण कम्मिलाई उज्यालो पार्छ'},
+                {src: 'photos/photosandhya2.jpeg', caption: 'परिवारका पवित्र पलहरू हामीले सधैं माया गर्छौं'},
+                {src: 'photos/photosandhya3.jpeg', caption: 'एकअर्कासँग रमाएर बिताएको समय'},
+                {src: 'photos/photosandhya4.jpeg', caption: 'शुद्ध खुशी र हाँसो'},
+                {src: 'photos/photosandhya5.jpeg', caption: 'सधैं सम्झनाको लागि एउटा सपना'},
+                {src: 'photos/photosandhya6.jpeg', caption: 'तिम्रो सानो हँसिलो संसार'}
+            ];
+
+            photos.forEach((p, i) => {
+                const card = document.createElement('div');
+                card.className = 'memory-card';
+                card.innerHTML = `<img src="${p.src}" alt="${p.caption}" loading="lazy"><div class="card-body">${p.caption}</div>`;
+                card.onclick = () => openLightbox(photos, i);
+                photoContainer.appendChild(card);
+            });
+        }
+
+        // ========== 3D CUBE ==========
+        function initMemoryCube() {
+            const cube = document.getElementById('memory-cube');
+            if (!cube) return;
+
+            const photos = [
+                'photos/photosandhya1.jpeg',
+                'photos/photosandhya2.jpeg',
+                'photos/photosandhya3.jpeg',
+                'photos/photosandhya4.jpeg',
+                'photos/photosandhya5.jpeg',
+                'photos/photosandhya6.jpeg'
+            ];
+
+            const faces = cube.querySelectorAll('.cube-face');
+            faces.forEach((face, i) => face.style.backgroundImage = `url('${photos[i]}')`);
+
+            function updateCube() {
+                cube.style.transform = `rotateX(${currentRotationX}deg) rotateY(${currentRotationY}deg)`;
+            }
+
+            function startAutoRotate() {
+                stopAutoRotate();
+                isAutoRotating = true;
+                autoRotateInterval = setInterval(() => {
+                    currentRotationY += 0.6;
+                    updateCube();
+                }, 50);
+            }
+
+            function stopAutoRotate() {
+                if (autoRotateInterval) clearInterval(autoRotateInterval);
+                isAutoRotating = false;
+            }
+
+            window.rotateCube = function(deg) {
+                stopAutoRotate();
+                currentRotationY += deg;
+                updateCube();
+                setTimeout(startAutoRotate, 2500);
+            };
+
+            window.toggleAutoRotate = function() {
+                if (isAutoRotating) stopAutoRotate();
+                else startAutoRotate();
+            };
+
+            // Mouse Drag
+            let isDragging = false, prevX = 0, prevY = 0;
+
+            cube.addEventListener('mousedown', e => {
+                isDragging = true; prevX = e.clientX; prevY = e.clientY; stopAutoRotate();
+                cube.style.transition = 'none';
+            });
+
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    cube.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1)';
+                    currentRotationY = Math.round(currentRotationY / 90) * 90;
+                    updateCube();
+                    setTimeout(startAutoRotate, 2800);
+                }
+            });
+
+            document.addEventListener('mousemove', e => {
+                if (!isDragging) return;
+                currentRotationY += (e.clientX - prevX) * 0.6;
+                currentRotationX -= (e.clientY - prevY) * 0.5;
+                currentRotationX = Math.max(-60, Math.min(60, currentRotationX));
+                updateCube();
+                prevX = e.clientX; prevY = e.clientY;
+            });
+
+            // Touch Support
+            cube.addEventListener('touchstart', e => {
+                isDragging = true; prevX = e.touches[0].clientX; prevY = e.touches[0].clientY; stopAutoRotate();
+                cube.style.transition = 'none';
+            }, {passive: true});
+
+            document.addEventListener('touchend', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    cube.style.transition = 'transform 0.6s cubic-bezier(0.23,1,0.32,1)';
+                    currentRotationY = Math.round(currentRotationY / 90) * 90;
+                    updateCube();
+                    setTimeout(startAutoRotate, 2800);
+                }
+            }, {passive: true});
+
+            document.addEventListener('touchmove', e => {
+                if (!isDragging) return;
+                currentRotationY += (e.touches[0].clientX - prevX) * 0.6;
+                currentRotationX -= (e.touches[0].clientY - prevY) * 0.5;
+                currentRotationX = Math.max(-60, Math.min(60, currentRotationX));
+                updateCube();
+                prevX = e.touches[0].clientX; prevY = e.touches[0].clientY;
+            }, {passive: true});
+
+            cube.addEventListener('mouseenter', () => { if (isAutoRotating) stopAutoRotate(); });
+            cube.addEventListener('mouseleave', () => { if (!isDragging) startAutoRotate(); });
+
+            updateCube();
+            startAutoRotate();
+        }
+
+        function ensureVideoPlayback(video) {
+            if (!video) return;
+            video.muted = true;
+            video.autoplay = true;
+            video.loop = true;
+            video.play().catch(() => {});
+        }
+
+        // ========== LIGHTBOX ==========
+        function openLightbox(photos, index) {
+            currentLightboxPhotos = photos;
+            currentLightboxIndex = index;
+            document.getElementById('lightbox-image').src = photos[index].src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function navigateLightbox(dir) {
+            currentLightboxIndex = (currentLightboxIndex + dir + currentLightboxPhotos.length) % currentLightboxPhotos.length;
+            document.getElementById('lightbox-image').src = currentLightboxPhotos[currentLightboxIndex].src;
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ========== VIDEO MODAL ==========
+        function openVideoModal(src, caption) {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+            document.getElementById('video-caption').textContent = caption;
+            video.src = src;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => ensureVideoPlayback(video), 300);
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('video-modal');
+            const video = document.getElementById('modal-video');
+            video.pause();
+            video.src = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // ========== MUSIC ==========
+        let musicPlaying = false;
+        function startBackgroundMusic() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (!audio) return;
+            audio.volume = 0.3;
+            audio.play().then(() => {
+                btn.classList.add('playing');
+                btn.innerHTML = '⏸';
+                musicPlaying = true;
+            }).catch(() => {});
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bg-music');
+            const btn = document.getElementById('music-btn');
+            if (!musicPlaying) {
+                audio.play().then(() => {
+                    btn.classList.add('playing');
+                    btn.innerHTML = '⏸';
+                    musicPlaying = true;
+                }).catch(()=>{});
+            } else {
+                audio.pause();
+                btn.classList.remove('playing');
+                btn.innerHTML = '🎵';
+                musicPlaying = false;
+            }
+        }
+
+        // ========== INIT ==========
+        function init() {
+            initLoader();
+            initFloatingElements();
+            populateGalleries();
+            initMemoryCube();
+            ensureVideoPlayback(document.querySelector('.hero-video'));
+            ensureVideoPlayback(document.getElementById('memories-bg-video'));
+            setTimeout(startBackgroundMusic, 1400);
+
+            // Keyboard
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape') {
+                    if (document.getElementById('lightbox').classList.contains('active')) closeLightbox();
+                    else if (document.getElementById('video-modal').classList.contains('active')) closeVideoModal();
+                }
+                if (document.getElementById('lightbox').classList.contains('active')) {
+                    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+                    if (e.key === 'ArrowRight') navigateLightbox(1);
+                }
+            });
+
+            console.log('%c[❤️] Premium combined version ready for Sandhya', 'color:#FFB6C1');
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
